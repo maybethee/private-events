@@ -6,9 +6,17 @@
   <div><%= link_to event.title, event %></div>
 <% end %>
 
-
 <h2>Attended Events:</h2>
 
-<% @user.attended_events.each do |event| %>
+<h3>Past Events:</h3>
+
+<% @user.attended_events.where(date: (..(Time.now.midnight - 1.day))).each do |event| %>
+  <div><%= link_to event.title, event %></div>
+<% end %>
+
+
+<h3>Upcoming Events:</h3>
+
+<% @user.attended_events.where(date: ((Time.now.midnight - 1.day)..)).each do |event| %>
   <div><%= link_to event.title, event %></div>
 <% end %>
