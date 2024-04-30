@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show]
   resources :events, only: [:new, :create, :show] do
-    resources :attendances, only: [:create]
+    resources :attendances, only: [:create, :destroy]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

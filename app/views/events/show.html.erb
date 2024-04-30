@@ -3,7 +3,13 @@
 <div>To be held on <%= @event.date %></div>
 <div>at <%= @event.location %></div>
 
-<%= button_to 'Join Event', event_attendances_path(@event), method: :post %>
+<% if current_user.attended_events.include?(@event) %>
+  <%= button_to 'Leave Event', event_attendance_path(@event, current_user.attendances.find_by(attended_event_id: @event.id)), method: :delete %>
+
+
+<% else %>
+  <%= button_to 'Join Event', event_attendances_path(@event), method: :post %>
+<% end %>
 
 <h2>Attendees:</h2>
 
