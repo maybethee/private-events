@@ -1,14 +1,13 @@
-<div>
-  <% unless user_signed_in? %>
-    <%= link_to "Login", new_user_session_path %> 
-    <%= link_to "Sign Up", new_user_registration_path %> 
-  <% end %>
-</div>
-
 <h1>All Events</h1>
 
-<% @events.each do |event| %>
-<div>
-  <h2><%= link_to event.title, event %></h2>
-</div>
+<h2>Upcoming Events</h2>
+
+<% @events.upcoming.each do |event| %>
+  <h3><%= link_to event.title, event %></h3>
+<% end %>
+
+<h2>Past Events</h2>
+
+<% @events.past.each do |event| %>
+  <h3><%= link_to event.title, event %></h3>
 <% end %>
